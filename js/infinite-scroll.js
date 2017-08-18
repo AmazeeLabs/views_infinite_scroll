@@ -26,7 +26,7 @@
    *   New content detached from the DOM.
    */
   $.fn.infiniteScrollInsertView = function ($newView) {
-    var currentViewId = this.selector.replace('.js-view-dom-id-', 'views_dom_id:');
+    var currentViewId = this.attr('class').replace(/(.*)js-view-dom-id-/, 'views_dom_id:');
     // Get the existing ajaxViews object.
     var view = Drupal.views.instances[currentViewId];
     // Remove once so that the exposed form and pager are processed on
