@@ -4,5 +4,6 @@ views-infinite-scroll:
     js/infinite-scroll.js : {}
   dependencies:
     - core/jquery
+    - core/jquery.once
     - core/drupal
     - core/drupal.debounce
