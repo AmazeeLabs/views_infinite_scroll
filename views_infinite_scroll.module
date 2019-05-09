@@ -40,12 +40,16 @@ function views_infinite_scroll_preprocess_views_view(&$vars) {
   if ($view->getDisplay()->isPagerEnabled() && !empty($vars['rows'])) {
     $pager = $view->getPager();
     if ($pager && $pager instanceof InfiniteScroll) {
-      $vars['rows']['#theme_wrappers'] = ['container'];
-      $vars['rows']['#attributes'] = [
-        'data-drupal-views-infinite-scroll-content-wrapper' => TRUE,
-        'class' => [
-          'views-infinite-scroll-content-wrapper',
-          'clearfix',
+      if (!isset($vars['rows']['#theme_wrappers'])) {
+        $vars['rows']['#theme_wrappers'] = [];
+      }
+      $vars['rows']['#theme_wrappers']['container'] = [
+        '#attributes' => [
+          'data-drupal-views-infinite-scroll-content-wrapper' => TRUE,
+          'class' => [
+            'views-infinite-scroll-content-wrapper',
+            'clearfix',
+          ],
         ],
       ];
     }
