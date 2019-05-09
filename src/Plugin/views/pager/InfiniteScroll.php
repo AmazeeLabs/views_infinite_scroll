@@ -80,7 +80,6 @@ class InfiniteScroll extends SqlBase {
 
     $form['views_infinite_scroll'] = [
       '#title' => $this->t('Infinite Scroll Options'),
-      '#description' => $this->t('Note: The infinite scroll option overrides and requires the <em>Use AJAX</em> setting for this views display.'),
       '#type' => 'details',
       '#open' => TRUE,
       '#tree' => TRUE,

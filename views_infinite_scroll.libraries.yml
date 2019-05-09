@@ -7,3 +7,4 @@ views-infinite-scroll:
     - core/jquery.once
     - core/drupal
     - core/drupal.debounce
+    - views/views.ajax
