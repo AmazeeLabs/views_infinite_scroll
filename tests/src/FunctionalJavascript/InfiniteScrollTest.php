@@ -20,17 +20,12 @@ class InfiniteScrollTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'views',
     'views_ui',
     'views_infinite_scroll',
     'node',
   ];
-
-  /**
-   * How long to wait for AJAX requests to complete.
-   */
-  const ajaxWaitDelay = 500;
 
   /**
    * {@inheritdoc}
@@ -40,7 +35,8 @@ class InfiniteScrollTest extends WebDriverTestBase {
     $this->createContentType([
       'type' => 'page',
     ]);
-    foreach (range(0, 10) as $i) {
+    // Create 11 nodes.
+    for ($i = 1; $i <= 11; $i++) {
       $this->createNode([
         'status' => TRUE,
         'type' => 'page',
@@ -60,7 +56,7 @@ class InfiniteScrollTest extends WebDriverTestBase {
     $this->drupalGet('click-to-load');
     $this->assertTotalNodes(3);
     $this->getSession()->getPage()->clickLink('Load More');
-    $this->getSession()->wait(static::ajaxWaitDelay);
+    $this->assertSession()->waitForElement('css', '.node--type-page:nth-child(4)');
     $this->assertTotalNodes(6);
 
     // Test the view automatically loading.
@@ -72,7 +68,7 @@ class InfiniteScrollTest extends WebDriverTestBase {
     $this->drupalGet('automatic-load');
     $this->assertTotalNodes(3);
     $this->scrollTo(500);
-    $this->getSession()->wait(static::ajaxWaitDelay);
+    $this->assertSession()->waitForElement('css', '.node--type-page:nth-child(4)');
     $this->assertTotalNodes(6);
 
     // Test @next_page_count and @total token.
@@ -82,7 +78,7 @@ class InfiniteScrollTest extends WebDriverTestBase {
     ], 6);
     $this->drupalGet('next-page-count');
     $this->getSession()->getPage()->clickLink('Load 5 more of 11');
-    $this->getSession()->wait(static::ajaxWaitDelay);
+    $this->assertSession()->waitForElement('css', '.node--type-page:nth-child(7)');
     $this->assertTotalNodes(11);
   }
 
