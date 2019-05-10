@@ -2,9 +2,9 @@
 
 namespace Drupal\Tests\views_infinite_scroll\FunctionalJavascript;
 
-use Drupal\FunctionalJavascriptTests\JavascriptTestBase;
-use Drupal\simpletest\ContentTypeCreationTrait;
-use Drupal\simpletest\NodeCreationTrait;
+use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
+use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Drupal\views\Entity\View;
 
 /**
@@ -12,7 +12,7 @@ use Drupal\views\Entity\View;
  *
  * @group views_infinite_scroll
  */
-class InfiniteScrollTest extends JavascriptTestBase {
+class InfiniteScrollTest extends WebDriverTestBase {
 
   use NodeCreationTrait;
   use ContentTypeCreationTrait;
